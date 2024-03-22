@@ -99,7 +99,11 @@ function draw() {
     drawBricks()
 }
 
-draw()
+function update() {
+
+    draw()
+    requestAnimationFrame()
+}
 
 
 // Rules open and close event handlers
