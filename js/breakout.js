@@ -34,7 +34,7 @@ brickInfo = {
     w: 70,
     h: 20,
     padding: 10,
-    offsexX: 45,
+    offsetX: 45,
     offsetY: 60,
     visible: true,
 }
@@ -54,7 +54,7 @@ for(let i = 0; i < brickRowCount; i++) {
 function drawBall() {
     ctx.beginPath()
     ctx.arc(ball.x, ball.y, ball.size, 0, Math.PI * 2)
-    ctx.fillsStyle = '#0095dd'
+    ctx.fillStyle = '#0095dd'
     ctx.fill()
     ctx.closePath()
 }
@@ -63,7 +63,7 @@ function drawBall() {
 function drawPaddle() {
     ctx.beginPath()
     ctx.rect(paddle.x, paddle.y, paddle.w, paddle.h)
-    ctx.fillsStyle = '#0095dd'
+    ctx.fillStyle = '#0095dd'
     ctx.fill()
     ctx.closePath()
 }
