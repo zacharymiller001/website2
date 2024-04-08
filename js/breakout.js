@@ -23,7 +23,7 @@ ball = {
 paddle = {
     x: canvas.width / 2 - 40,
     y: canvas.height - 20,
-    w: 80,
+    w: 100,
     h: 10,
     speed: 8,
     dx: 0,
@@ -175,10 +175,10 @@ function moveBall() {
 
     // brick collision
     bricks.forEach(column => {
-        column.forEach(brick =>{
+        column.forEach(brick => {
            if (brick.visible) {
             if (
-                ball.x - ball.size > brick.x && //left brick side
+                ball.x - ball.size > brick.x && //left
                 ball.x + ball.size < brick.x + brick.w && //right
                 ball.y - ball.size < brick.y + brick.h //bottom
             ) {
