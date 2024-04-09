@@ -82,7 +82,13 @@ function drawBricks() {
         column.forEach(brick => {
             ctx.beginPath()
             ctx.rect(brick.x, brick.y, brick.w, brick.h)
-            ctx.fillStyle = '#0095dd'
+            if (brick.visible) {
+                ctx.fillStyle = '#0095dd'
+            }
+            else{
+                ctx.fillStyle = 'transparent'
+            }
+
             ctx.fill()
             ctx.closePath()
         })
@@ -90,15 +96,6 @@ function drawBricks() {
 }
 
 console.log(bricks)
-
-//Draw everything
-function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-    drawPaddle()
-    drawBall()
-    drawScore()
-    drawBricks()
-}
 
 //Move paddle on canvas
 function movePaddle() {
@@ -176,15 +173,17 @@ function moveBall() {
     // brick collision
     bricks.forEach(column => {
         column.forEach(brick => {
-           if (brick.visible) {
-            if (
-                ball.x - ball.size > brick.x && //left
-                ball.x + ball.size < brick.x + brick.w && //right
-                ball.y - ball.size < brick.y + brick.h //bottom
-            ) {
-                ball.dy = -1 * ball.dy
-                brick.visible = false
-                increaseScore()
+            if (brick.visible) {
+                if (
+                    ball.x - ball.size > brick.x &&
+                    ball.x + ball.size < brick.x + brick.w &&
+                    ball.y - ball.size < brick.y + brick.h &&
+                    ball.y + ball.size > brick.y
+                ) {
+                    console.log("HIT")
+                    ball.dy *= -1
+                    brick.visible = false
+                    increaseScore()
             }
            }
         })
@@ -209,6 +208,22 @@ function showAllBricks() {
     })
 }
 
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    drawPaddle()
+    drawBall()
+    drawScore()
+    drawBricks()
+}
+
+function update() {
+    if (ball.y + ball.size <= canvas.height) {
+        requestAnimationFrame(update)
+    }
+    else {
+        ball.dy *= -1
+    }
+}
 
 // Update canvas drawing and do animation
 function update() {
