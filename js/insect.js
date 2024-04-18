@@ -16,7 +16,7 @@ start_btn.addEventListener('click', () => {
 
 choose_insect_btns.forEach(btn => {
     btn.addEventListener('click', () => {
-        console.log("CLICK")
+        console.log("CONSOLE")
         const img = btn.querySelector('img')
         const alt = img.getAttribute('alt')
         const src = img.getAttribute('src')
@@ -42,16 +42,16 @@ function increaseTime() {
     if (s < 10) {
         s = `0${s}`
     }
-    timeElement.innerHTML = `Time: ${m}:${s}`
+    timeEl.innerHTML = `Time: ${m}:${s}`
     s++
 }
 
 function createInsect() {
     const insect = document.createElement('div')
     insect.classList.add('insect')
-    const {x, y} = getRandomLocation()
+    const { x, y } = getRandomLocation()
     insect.style.top = `${y}px`
-    insect.style.left = `%{x}px`
+    insect.style.left = `${x}px`
     insect.innerHTML = `<img src="${selected_insect.src}" alt="${selected_insect.alt}" style = "transform: rotate(${Math.random() * 360}deg)" />`
     insect.addEventListener('click', catchInsect)
 
@@ -83,4 +83,5 @@ function getRandomLocation() {
     const height = window.innerHeight
     const x = Math.random() * (width - 200) + 100
     const y = Math.random() * (height - 200) + 100
+    return { x, y }
 }
