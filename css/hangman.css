@@ -2,7 +2,6 @@
 body {
     background-color: #34495e;
     color: white;
-
 }
 
 .figure-container {
@@ -10,5 +9,8 @@ body {
     stroke: white;
     stroke-width: 4x;
     stroke-linecap: round;
+}
 
+.figure-part {
+    display: none;
 }
