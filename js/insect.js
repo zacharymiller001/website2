@@ -2,13 +2,12 @@ const screens = document.querySelectorAll('.screen')
 const choose_insect_btns = document.querySelectorAll('.choose-insect-btn')
 const game_container = document.getElementById('game-container')
 const start_btn = document.getElementById('start-btn')
-const timeEl = document.getElementById('time')
-const scoreEl = document.getElementById('score')
+const timeE1 = document.getElementById('time')
+const scoreE1 = document.getElementById('score')
 const message = document.getElementById('message')
 let seconds = 0
 let score = 0
 let selected_insect = {}
-
 
 start_btn.addEventListener('click', () => {
     screens[0].classList.add('up')
@@ -16,7 +15,6 @@ start_btn.addEventListener('click', () => {
 
 choose_insect_btns.forEach(btn => {
     btn.addEventListener('click', () => {
-        console.log("CONSOLE")
         const img = btn.querySelector('img')
         const alt = img.getAttribute('alt')
         const src = img.getAttribute('src')
@@ -30,7 +28,6 @@ choose_insect_btns.forEach(btn => {
 
 function startGame() {
     setInterval(increaseTime, 1000)
-
 }
 
 function increaseTime() {
@@ -39,11 +36,11 @@ function increaseTime() {
     if (m < 10) {
         m = `0${m}`
     }
-    if (s < 10) {
+    if ( s < 10) {
         s = `0${s}`
     }
-    timeEl.innerHTML = `Time: ${m}:${s}`
-    s++
+    timeE1.innerHTML = `Time: ${m}:${s}`
+    seconds++
 }
 
 function createInsect() {
@@ -52,12 +49,12 @@ function createInsect() {
     const { x, y } = getRandomLocation()
     insect.style.top = `${y}px`
     insect.style.left = `${x}px`
-    insect.innerHTML = `<img src="${selected_insect.src}" alt="${selected_insect.alt}" style = "transform: rotate(${Math.random() * 360}deg)" />`
+    insect.innerHTML = `<img src="${selected_insect.src}" alt="${selected_insect.alt}" style = "transform: rotate(${Math.random() * 360}deg" />`
     insect.addEventListener('click', catchInsect)
 
     game_container.appendChild(insect)
-
 }
+
 
 function catchInsect() {
     increaseScore()
@@ -71,13 +68,16 @@ function addInsects() {
     setTimeout(createInsect, 1500)
 }
 
+
 function increaseScore() {
-    score++;
+    score++
     if (score > 19) {
         message.classList.add('visible')
     }
-    scoreEl.innerHTML = `Score: ${score}`
+    scoreE1.innerHTML = `Score: ${score}`
 }
+
+
 function getRandomLocation() {
     const width = window.innerWidth
     const height = window.innerHeight
